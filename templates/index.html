@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Study Scheduler</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        h1 { color: #4A148C; }
+        form { background: white; padding: 20px; border-radius: 10px; width: 400px; margin: auto; }
+        label { display: block; margin: 10px 0 5px; }
+        input, textarea { width: 100%; padding: 5px; }
+        button { background:rgb(101, 72, 137); color: white; padding: 10px; border: none; cursor: pointer; margin-top: 10px; }
+        .error { color: red; margin-top: 10px; }
+        .schedule { background:rgb(244, 246, 231); padding: 10px; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<h1>📚 Smart Study Scheduler</h1>
+
+<form method="post">
+    <label>Daily Study Hours:</label>
+    <input type="text" name="daily_hours" placeholder="e.g., 3.5" required>
+
+    <label>Subjects & Total Hours (one per line, e.g., Math,5):</label>
+    <textarea name="subjects" placeholder="Math,5&#10;Physics,4.5" required></textarea>
+
+    <button type="submit">Generate My Schedule</button>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if schedule %}
+        <div class="schedule">
+            <h3>Your Study Schedule:</h3>
+            <ul>
+                {% for subject, hours in schedule %}
+                    <li>{{ subject }}: {{ hours }} hours/day</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</form>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Your Study Schedule{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>✅ Your Personalized Study Plan</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Subjects & Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for day, tasks in schedule.items() %}
+      <tr>
+        <td>{{ day }}</td>
+        <td>
+          <ul>
+            {% for subj, hrs in tasks %}
+              <li><b>{{ subj }}:</b> {{ hrs }} hours</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ url_for('index') }}" class="btn">🔙 Plan Again</a>
+</div>
+{% endblock %}
